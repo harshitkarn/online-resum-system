@@ -1,0 +1,15 @@
+<div class="outer">
+    <div >
+        Job
+    </div>
+    <div>Skills</div>
+    <div class="actions">
+       Actions<i class="fa-solid fa-plus" routerLink="/addNewJob">
+    
+
+       </i>
+    </div>
+</div>
+<div *ngFor="let item of jobs">
+    <app-job-item [name]="item.jobProfile" [skills]="item.skill" [jobId]="item.jobId" (loadData)="loadData()"></app-job-item>
+</div>

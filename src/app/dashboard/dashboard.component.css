@@ -1,0 +1,25 @@
+.outer{
+    margin-top: 40px !important;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 40px;
+    align-items: center;
+    margin: 10px auto;
+    width: 70%;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.outer div{
+    width: 33%;
+     
+ }
+.actions{
+
+ margin: 0;
+ text-align: end;
+}
+.fa-plus{
+    margin-left: 20px;
+    font-size: larger;
+    cursor: pointer;
+}

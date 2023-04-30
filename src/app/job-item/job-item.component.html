@@ -1,0 +1,11 @@
+<div class="outer">
+    <div >
+      {{name}}
+    </div>
+    <div>{{skills}}</div>
+    <div class="icons">
+        <i class="fa-sharp fa-solid fa-circle-info" routerLink='/getJobDetail/{{jobId}}'></i>
+        <i class="fa-solid fa-pen" routerLink='/updateJob/{{jobId}}'></i>
+        <i class="fa-solid fa-trash" (click)="deleteJob($event, jobId)"></i>
+    </div>
+</div>

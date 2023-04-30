@@ -1,0 +1,29 @@
+<form method="post" action="" onsubmit="return false;">
+    <h2>Job Details</h2>
+    
+    <div>
+        <label>Job Id</label><br>
+        <div class="input">{{formData.jobId}}</div>
+    </div>
+    <div>
+        <label>Job Name</label><br>
+        <div class="input">{{formData.jobProfile}}</div>
+    </div>
+    <div>
+        <label>Skill</label><br>
+        <div class="input">{{formData.skill}}</div>
+    </div>
+    <div>
+        <label>Minimum Experience</label><br>
+        <div class="input">{{formData.exp_min}}</div>
+    </div>
+    <div>
+        <label>Maximum Experience</label><br>
+        <div class="input">{{formData.exp_max}}</div>
+    </div>
+    <div>
+        <label>Salary</label><br>
+        <div class="input">{{formData.salary}}</div>
+    </div>
+    <button routerLink="/dashboard">Go Back</button>
+</form>

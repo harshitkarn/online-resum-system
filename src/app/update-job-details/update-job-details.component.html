@@ -1,0 +1,25 @@
+<form method="post" action="" onsubmit="return false;">
+    <div style="display: flex; align-items: center; justify-content: space-between;"><h2>Update Job </h2> <span class="caption">ID : {{formData.jobId}}</span></div>
+    
+    <div>
+        <label>Job Name</label><br>
+        <input type="text" name="jobProfile" (change)="handleChange($event)" value={{formData.jobProfile}}>
+    </div>
+    <div>
+        <label>Skill</label><br>
+        <input type="text" name="skill" (change)="handleChange($event)" value={{formData.skill}}>
+    </div>
+    <div>
+        <label>Minimum Experience</label><br>
+        <input type="number" name="exp_min" (change)="handleChange($event)" value={{formData.exp_min}}>
+    </div>
+    <div>
+        <label>Maximum Experience</label><br>
+        <input type="number" name="exp_max" (change)="handleChange($event)"  value={{formData.exp_max}}>
+    </div>
+    <div>
+        <label>Salary</label><br>
+        <input type="number" name="salary" (change)="handleChange($event)"  value={{formData.salary}}>
+    </div>
+    <button (click)="submitHandler()">Update</button>
+</form>

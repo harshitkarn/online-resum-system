@@ -1,0 +1,30 @@
+.outer{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin: 10px auto;
+    width: 70%;
+    border-radius: 5px;
+
+}
+.outer div{
+   width: 33%;
+    
+}
+.icons{
+justify-content: end;
+    display: flex;
+    gap: 20px;
+}
+.icons i{
+    font-size: 20px;
+    color: #654E92;
+    cursor: pointer;
+    transition-duration: 200ms;
+
+}
+.icons i:hover{
+    transform: scale(1.1);
+}
