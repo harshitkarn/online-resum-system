@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CookieService } from 'src/utils/cookie.service';
+import { AuthService } from '../services/auth.services';
 
 
 @Component({
@@ -21,18 +21,17 @@ export class UpdateJobDetailsComponent implements OnInit {
     salary: 0,
     jobId:0
   };
-  constructor(private router: Router, private route: ActivatedRoute, private cookieService:CookieService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private auth:AuthService) {}
 
-  async ngOnInit(){
-    if(!await this.cookieService.checkAuth()){
-      this.router.navigate(['/login']);
-
+  ngOnInit(){
+    if(!this.auth.loginStatus()){
+      this.router.navigate(['/']);
     }
     this.getJobData(this.route.snapshot.paramMap.get('jobId'))
   }
 
   getJobData(id:any){
-fetch(this.getJobUrl+id).then((response)=>response.json()).then((data)=> {this.formData=data;console.log(this.formData)})
+    fetch(this.getJobUrl+id).then((response)=>response.json()).then((data)=> {this.formData=data;console.log(this.formData)})
   }
 
   submitHandler() {
@@ -42,7 +41,6 @@ fetch(this.getJobUrl+id).then((response)=>response.json()).then((data)=> {this.f
       body: JSON.stringify(this.formData),
       headers: {
         'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     })
       .then((response) => response.json())

@@ -3,10 +3,11 @@
         <h1><i class="fa fa-briefcase"></i>ORS</h1>
         <a href="" routerLink="/" routerLinkActive="active">HOME</a>
         <a href="" routerLink="/dashboard" routerLinkActive="active">DASHBOARD</a>
-        <a href="">RESUME</a>
+        <a href="" routerLink="/resumes" routerLinkActive="active">RESUME</a>
     </div>
     <div class="nav-right">
-        <button (click)="checkLogin()">{{buttonName}}</button>
+        <a href="" routerLink="/login" routerLinkActive="active" *ngIf="isLoggedIn==false">Log In</a>
+        <a (click)="logout()" *ngIf="isLoggedIn">Log Out</a>
         <a class="register">Register</a>
     </div>
 

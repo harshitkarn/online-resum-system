@@ -1,0 +1,19 @@
+<div class="h2">
+    <h2>Resumes</h2>
+    <i class="fa-solid fa-xmark" *ngIf="searchOpen" (click)="closeSearch()"></i>
+    <i class="fa-solid fa-magnifying-glass" *ngIf="searchOpen==false" (click)="openSearch()"></i>
+</div>
+
+<div class="search" *ngIf="searchOpen">
+    <input type="text" autofocus (input)="filterResumes($event)" placeholder="Enter name to search...">
+</div>
+
+<div class="outer">
+    <div>User Name</div>
+    <div>Name</div>
+    <div>Email Id</div>
+    <div class="icon">View More</div>
+</div>
+<div *ngFor="let item of resumeFilter">
+    <app-resume-component [username]="item.username" [name]="item.name" [email]="item.email" [resumeId]="item.resumeId"></app-resume-component>
+</div>

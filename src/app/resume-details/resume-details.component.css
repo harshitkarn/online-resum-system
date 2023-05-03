@@ -1,6 +1,5 @@
 form{
     width: 300px;
-    margin: auto;
     margin-top: 50px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 20px;
@@ -9,13 +8,9 @@ form{
 
 input{
     width: 280px;
-    border: none;
-    outline: none;
-    background-color: #f6f9fd;
     padding: 10px;
     font-size: small;
     font-weight: bold;
-    border-radius: 5px;
 }
 label{
     font-size: small;
@@ -44,6 +39,11 @@ button{
 button:hover{
     background-color: white;
     color: #654E92;
+}
 
-
+.outer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }

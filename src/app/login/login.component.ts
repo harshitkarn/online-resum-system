@@ -1,39 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CookieService } from 'src/utils/cookie.service';
+import { AuthService } from '../services/auth.services';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  private getUserUrl = 'http://localhost:8085/findByUserNameAndPasswordAndUserType';
   formData = {
     username:"",
     pwd:''
   };
-  constructor(private router: Router, private route: ActivatedRoute, private cookieService:CookieService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private auth:AuthService) {}
 
-  async ngOnInit(){
-    if(await this.cookieService.checkAuth()){
-
-   this.router.navigate(['/dashboard']);
-
+  ngOnInit(){
+    if(this.auth.loginStatus()){
+      this.router.navigate(['/dashboard']);
     }
-  }
-
-  defaultCreds = {
-    username:"admin",
-    pwd:"admin"
-  }
-
-  login() {
-    console.log(this.formData)
-    if(this.formData.username === this.defaultCreds.username && this.formData.pwd === this.defaultCreds.pwd) {
-    this.cookieService.setCookie("login" , "some_token")
-    
-    this.router.navigate(['/dashboard']);
-    }
-   else alert("Login Failed")
   }
 
   handleChange(event: Event) {
@@ -41,4 +25,15 @@ export class LoginComponent implements OnInit {
     this.formData = { ...this.formData, [input.name]: input.value };
   }
 
+  submitHandler(){
+    fetch(`${this.getUserUrl}/${this.formData.username}/${this.formData.pwd}/admin`).then((response)=>response.json()).then((data)=> {
+      if(data.userName==null){
+        alert('invalid username or password');
+      }
+      else{
+        localStorage.setItem("userLoginDetails",JSON.stringify(data));
+        window.location.href="dashboard";
+      }
+    })
+  }
 }

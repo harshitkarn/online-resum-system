@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'src/utils/cookie.service';
+import { AuthService } from '../services/auth.services';
 
 
 @Component({
@@ -11,14 +11,14 @@ import { CookieService } from 'src/utils/cookie.service';
 export class DashboardComponent implements OnInit {
   private url: string = 'http://localhost:8085/getAllJobs';
   jobs:any;
-  constructor( private router: Router, private cookieService:CookieService) { }
+  constructor( private router: Router, private auth:AuthService) { }
 
 
-    async ngOnInit(){
-      if(!await this.cookieService.checkAuth()){
-        this.router.navigate(['/login']);
-  
-    }else  this.loadData()
+  ngOnInit(){
+    if(!this.auth.loginStatus()){
+      this.router.navigate(['/']);
+    }
+    this.loadData();
   }
 
 
@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
       .then((response) => response.json())
       .then((quotesData)=>{
         this.jobs = quotesData;
-        console.log(this.jobs);
       })
   }
 

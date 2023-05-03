@@ -1,0 +1,34 @@
+
+<div class="outer">
+    <form method="post" action="" onsubmit="return false;">
+        <h2>Resume Details</h2>
+        
+        <div>
+            <label>User Name</label><br>
+            <div class="input">{{formData.username}}</div>
+        </div>
+        <div>
+            <label>Name</label><br>
+            <div class="input">{{formData.name}}</div>
+        </div>
+        <div>
+            <label>Email Id</label><br>
+            <div class="input">{{formData.email}}</div>
+        </div>
+        <div>
+            <label>Mobile No.</label><br>
+            <div class="input">{{formData.mobileNo}}</div>
+        </div>
+        <div>
+            <label>Address</label><br>
+            <div class="input">{{formData.address}}</div>
+        </div>
+        <button routerLink="/resumes">Go Back</button>
+    </form>
+
+    <div id="pdf" style="width: 600px; height: 600px;" *ngIf="dataLoaded">
+        <iframe [src]="formData.resumeUrl | safe" style="width: 100%; height: 100%;" frameborder="0" scrolling="no">
+            <p>It appears your web browser doesn't support iframes.</p>
+        </iframe>
+    </div>
+</div>

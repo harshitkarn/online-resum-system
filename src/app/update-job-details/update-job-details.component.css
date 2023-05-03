@@ -37,8 +37,8 @@ button{
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 999px;
-    background-color: blue;
-    border: 2px solid blue;
+    background-color: #654E92;
+    border: 2px solid #654E92;
     color: white;
     font-weight: bold;
     transition-duration: 300ms;
@@ -46,7 +46,7 @@ button{
 }
 button:hover{
     background-color: white;
-    color: blue;
+    color: #654E92;
 
 
 }

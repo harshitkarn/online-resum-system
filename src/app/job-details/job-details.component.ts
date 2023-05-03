@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CookieService } from 'src/utils/cookie.service';
+import { AuthService } from '../services/auth.services';
 
 @Component({
   selector: 'app-job-details',
@@ -18,12 +18,11 @@ export class JobDetailsComponent implements OnInit {
     jobId:0
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private cookieService:CookieService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private auth:AuthService) { }
 
-  async ngOnInit(){
-    if(!await this.cookieService.checkAuth()){
-      this.router.navigate(['/login']);
-
+  ngOnInit(){
+    if(!this.auth.loginStatus()){
+      this.router.navigate(['/']);
     }
     this.getJobData(this.route.snapshot.paramMap.get('jobId'))
   }

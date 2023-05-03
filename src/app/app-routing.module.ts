@@ -6,6 +6,8 @@ import { AddJobDetailsComponent } from './add-job-details/add-job-details.compon
 import { UpdateJobDetailsComponent } from './update-job-details/update-job-details.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { LoginComponent } from './login/login.component';
+import { ResumeComponent } from './resume/resume.component';
+import { ResumeDetailsComponent } from './resume-details/resume-details.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path:'updateJob/:jobId', component:UpdateJobDetailsComponent},
   {path:'getJobDetail/:jobId', component:JobDetailsComponent},
   {path:'login', component:LoginComponent},
+  {path:'resumes', component:ResumeComponent},
+  {path:'resume/:resumeId', component:ResumeDetailsComponent},
 ];
 
 @NgModule({

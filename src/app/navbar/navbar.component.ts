@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'src/utils/cookie.service';
+import { AuthService } from '../services/auth.services';
 
 @Component({
   selector: 'app-navbar',
@@ -8,37 +8,22 @@ import { CookieService } from 'src/utils/cookie.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  buttonName = 'Log In'
-  isLoggedIn = false
+  isLoggedIn = false;
 
 
-  constructor(private router: Router , private cookieService: CookieService) { }
- 
-  private updateLoginButtonText(isLoggedIn: boolean) {
-    this.buttonName = isLoggedIn ? 'Logout' : 'Login';
+  constructor(private router: Router, private auth:AuthService) { }
+
+  ngOnInit() {
+    if(this.auth.loginStatus()){
+      this.isLoggedIn = true;
+    }
   }
 
-    ngOnInit() {
-      this.cookieService.loginStatus$.subscribe(isLoggedIn => {
-        this.updateLoginButtonText(isLoggedIn);
-      });
-     this.isLoggedIn = this.cookieService.checkAuthSync();
-      this.updateLoginButtonText(this.isLoggedIn);
-    }
+  logout(){
+    localStorage.removeItem("userLoginDetails");
+    this.isLoggedIn = false;
+    this.router.navigate(['/'])
+  }
   
-
-  async checkLogin(){
-
-    if(await this.cookieService.checkAuth()){
-      this.cookieService.eraseCookie('login');
-      console.log(this.isLoggedIn , 1)
-     return  this.router.navigate(['/login'])
-    }
-    else{
-      console.log(this.isLoggedIn , 2)
-
-     return this.router.navigate(['/dashboard']);
-    }
-  }
 
 }
