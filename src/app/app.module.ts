@@ -14,6 +14,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { ResumeDetailsComponent } from './resume-details/resume-details.component';
 import { ResumeComponentComponent } from './resume-component/resume-component.component';
 import { SafePipe } from './safe.pipe';
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,8 @@ import { SafePipe } from './safe.pipe';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-    
+    AppRoutingModule,
+    ToastNoAnimationModule.forRoot(),
 
   ],
   providers: [],

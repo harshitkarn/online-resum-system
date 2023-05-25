@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.services';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
     username:"",
     pwd:''
   };
-  constructor(private router: Router, private route: ActivatedRoute, private auth:AuthService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private auth:AuthService, private toastr:ToastrService) {}
 
   ngOnInit(){
     if(this.auth.loginStatus()){
@@ -28,10 +29,11 @@ export class LoginComponent implements OnInit {
   submitHandler(){
     fetch(`${this.getUserUrl}/${this.formData.username}/${this.formData.pwd}/admin`).then((response)=>response.json()).then((data)=> {
       if(data.userName==null){
-        alert('invalid username or password');
+        setTimeout(() => this.toastr.error('Invalid Username or Password'))
       }
       else{
         localStorage.setItem("userLoginDetails",JSON.stringify(data));
+        alert('Log in Successfully')
         window.location.href="dashboard";
       }
     })

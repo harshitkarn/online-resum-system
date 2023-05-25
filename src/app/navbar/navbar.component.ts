@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.services';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn = false;
 
 
-  constructor(private router: Router, private auth:AuthService) { }
+  constructor(private router: Router, private auth:AuthService, private toastr:ToastrService) { }
 
   ngOnInit() {
     if(this.auth.loginStatus()){
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   logout(){
     localStorage.removeItem("userLoginDetails");
     this.isLoggedIn = false;
+    setTimeout(() => this.toastr.success('Logged Out Successfully'))
     this.router.navigate(['/'])
   }
   
